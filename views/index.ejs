@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/_head.ejs') %>
+<body>
+<%- include('partials/_header.ejs') %>
+<main role="main" class="container mt-4">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to KloudKiq!</h1>
+    <p class="lead">Innovating your digital presence.</p>
+  </div>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We are a team of passionate software developers dedicated to creating impactful software solutions.</p>
+  </section>
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Web Development</h3>
+        <p>Building responsive and scalable web applications.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Mobile App Development</h3>
+        <p>Creating engaging and high-performance mobile applications.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Cloud Solutions</h3>
+        <p>Providing cloud-based solutions to enhance business efficiency.</p>
+      </div>
+    </div>
+  </section>
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <% if (testimonials.length > 0) { %>
+      <% testimonials.forEach(function(testimonial) { %>
+        <blockquote>
+          <p><%= testimonial.message %></p>
+          <footer><%= testimonial.author %></footer>
+        </blockquote>
+      <% }); %>
+    <% } else { %>
+      <p>Check back soon for testimonials from our happy clients!</p>
+    <% } %>
+    <% if (session && session.userId) { %>
+      <form action="/testimonials" method="POST">
+        <div class="form-group">
+          <label for="author">Your Name</label>
+          <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Testimonial</label>
+          <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+      </form>
+    <% } %>
+  </section>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Have a question or need a custom quote? <a href="/contact">Contact us</a>.</p>
+  </section>
+</main>
+</body>
+<%- include('partials/_footer.ejs') %>
+<script src="/js/main.js"></script>
+</html>

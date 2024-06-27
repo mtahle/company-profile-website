@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/_head.ejs') %>
+<body>
+<%- include('partials/_header.ejs') %>
+<main role="main" class="container mt-4">
+  <h2>Blog Posts</h2>
+  <% blogPosts.forEach(function(post) { %>
+    <div class="blog-post">
+      <h3><%= post.title %></h3>
+      <p><%= post.content %></p>
+      <small>Posted by <%= post.author %> on <%= post.createdAt.toDateString() %></small>
+    </div>
+  <% }); %>
+</main>
+</body>
+<%- include('partials/_footer.ejs') %>
+</html>
